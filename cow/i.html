@@ -1,0 +1,42 @@
+<body>
+  <style>
+     body { background-image: url("https://cdn.britannica.com/55/174255-050-526314B6/brown-Guernsey-cow.jpg") }
+     div#parent { width: 100% }
+
+     img {
+       display: inline-block;
+       height: 200px;
+       width: 200px;
+
+       animation-name: spin;
+       animation-duration: 1s;
+       animation-iteration-count: infinite;
+     }
+
+     @keyframes spin {
+       from { transform: rotate(0deg); }
+       to   { transform: rotate(360deg); }
+     }
+  </style>
+
+  <h1>1 cows (牛)</h1>
+  <a href="./j.html">lay egg</a>
+  <div id="parent">
+     <img src="https://cdn.britannica.com/55/174255-050-526314B6/brown-Guernsey-cow.jpg" id="cow">
+  </div>
+
+
+  <script>
+    let i = 1;
+
+    setInterval(function () {
+       i++;
+
+       const img = document.querySelector("img#cow").cloneNode();
+
+       document.body.appendChild(img);
+       document.querySelector("div#parent").appendChild(img);
+       document.querySelector("h1").innerHTML = `${i} cows (牛)`
+    }, 1000);
+  </script>
+</body>
