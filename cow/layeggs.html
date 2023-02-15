@@ -1,0 +1,65 @@
+<body>
+	<style>
+		body {overflow: none;}
+
+		img {width: 100px; height: 100px; position: absolute;}
+
+		.go-left {
+			animation-name: left;
+			animation-duration: 2s;
+			left: -100px;
+		}
+
+		.go-right {
+			animation-name: right;
+			animation-duration: 2s;
+			left: 100%;
+		}
+
+		@keyframes left {
+			from { left: 100%; }
+			to   { left: -100px;  }
+		}
+
+		@keyframes right {
+			from { left: -100px;   }
+			to   { left: 100%; }
+		}
+	</style>
+
+
+	<img src="https://cdn.britannica.com/55/174255-050-526314B6/brown-Guernsey-cow.jpg" id="original" class="go-right">
+
+<iframe>
+<script>
+let go_right = true;
+const ori = document.querySelector("img#original");
+
+setInterval(function () {
+	switch (go_right) {
+		case true: {
+			ori.classList.remove("go-left");
+			ori.classList.add("go-right");
+			document.querySelectorAll(".clone").forEach(e => e.remove())
+		} break;
+
+		case false: {
+			ori.classList.remove("go-right");
+			ori.classList.add("go-left");
+
+			for (let i = 0 ; i < 30 ; i++) {
+				const el = ori.cloneNode();
+				const height = Math.floor(Math.random() * window.outerHeight);
+				el.id = "";
+				el.classList.add("clone");
+
+				document.body.appendChild(el);
+				el.style.top = `${height}px`
+			}
+		} break;
+	}
+
+	go_right = !go_right;
+}, 2000);
+</script>
+</body>
